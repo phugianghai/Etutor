@@ -1,0 +1,45 @@
+﻿
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+</head>
+
+<body>
+    <div id="chart_container">
+        <canvas id="myChart"></canvas>
+
+    </div>
+    <script>
+
+        var repArray = @Html.Raw(Json.Encode(ViewBag.TutorName));
+        var message = @Html.Raw(Json.Encode(ViewBag.TotalMessage));
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var barchart = new Chart(ctx, {
+
+            type: 'bar',
+            data: {
+                labels: repArray,
+                datasets: [{
+                    label: "Total Messages",
+                    data: message,
+                    backgroundColor: ["rgba(242,166,54,.5", "rgba(145,65,72,.5", "(74,25,92,.5)"],
+                    borderColor: ["rgb(242,166,54)", "rgb(145,65,72)", "rgb(74,25,92"],
+                    borderWidth: 1
+
+                }]
+            },
+
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+    </script>
+
+</body>
